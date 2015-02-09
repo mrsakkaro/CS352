@@ -30,6 +30,14 @@ num     {digit}+
 	return QWORD;
 }
 
+(document\.write\("(^\n)"\)) {
+	chear * temp = strdup(yytext);
+	temp++;
+	temp[strlen(temp)-1] = '\0';
+	yylval.string_val = strdup(temp);
+	return DOCUWRITE;
+}
+
 ";" {
 	return SEMICOLON;
 }
@@ -62,7 +70,9 @@ num     {digit}+
 	return(PLUS);
 }
 
-
+"=" {
+	return EQUAL;
+}
 
 {ws} {
 	
