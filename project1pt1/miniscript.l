@@ -1,8 +1,7 @@
 %{
 #include <stdio.h>
 #include "y.tab.h"
-
-
+#include <string.h>
 %}
 
 %option yylineno
@@ -10,36 +9,32 @@
 delim   [ \t]
 ws      {delim}+
 letter  [A-Za-z]
-digit   [\d]
+digit   [0-9]
 id      {letter}({letter}|{digit})*
-num     {digit}+
+num     {digit}*
 
 
 
 %%
 
 "<script type=\"text/JavaScript\">" {
+	printf("<text/Javascript>\n");
 	return SCRIPTYPE;
 }
 
-(["]^\n["]) {
-	char * temp = strdup(yytext);
-	temp++;
-	temp[strlen(temp)-1] = '\0';
-	yylval.string_val = strdup(temp);
-	return QWORD;
-}
-
-(document\.write\("(^\n)"\)) {
-	chear * temp = strdup(yytext);
-	temp++;
-	temp[strlen(temp)-1] = '\0';
-	yylval.string_val = strdup(temp);
-	return DOCUWRITE;
+"</script>" {
+	printf("</script>\n");
+	return SLASHSCRIPT;
 }
 
 ";" {
+	printf("SEMICOLON");
 	return SEMICOLON;
+}
+
+"=" {
+	printf("EQUAL ");
+	return EQUAL;
 }
 
 "*" {
@@ -50,28 +45,33 @@ num     {digit}+
 	return PLUS;
 }
 
-\n {
+"-" {
+	return MINUS;
+}
+
+"/" {
+	return DIVIDE;
+}
+
+"\n" {
 	// Newline character is found.
+	printf("\n");
 	return NEWLINE;
 }
-1
-"var" {
+
+"var " {
+	printf("var ");
 	return VAR;
 }
 
 {id} {
-	return(ID);
+	printf("ID ");
+	return ID;
 }
 
-{num} {
-	return(NUM);
-}
-"+" {
-	return(PLUS);
-}
-
-"=" {
-	return EQUAL;
+[0-9]+ {
+	printf("NUMBER ");
+	return NUM;
 }
 
 {ws} {

@@ -1,10 +1,13 @@
-all: miniscript lex.yy
+all: miniscript lex.yy.c
 
-miniscript: miniscript.l
+miniscript: y.tab.c lex.yy.c
+	gcc y.tab.c lex.yy.c -o parser -lfl
+
+y.tab.c: miniscript.y
+	bison -y -d -g -t --debug miniscript.y
+
+lex.yy.c: miniscript.l
 	lex miniscript.l
 
-lex.yy: lex.yy.c
-	cc lex.yy.c -o miniscript -ll
-
 clean:
-	rm miniscript lex.yy.c
+	rm -f lex.yy.c y.tab.c y.tab.h y.dot y.outputM@

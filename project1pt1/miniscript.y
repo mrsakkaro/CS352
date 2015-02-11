@@ -2,25 +2,49 @@
 #include<stdio.h>
 %}
 
-%token ASSIGN ID NUM PLUS
-%start exp 
+%token ID NUM PLUS SCRIPTYPE SLASHSCRIPT NEWLINE VAR EQUAL SEMICOLON TIME MINUS DIVIDE
+%start parse
 
 %%
 
-parse: SCRIPTYPE CONT SLASHSCRIPT
-	 	| /* It can be empty */
+parse 	: SCRIPTYPE exps SLASHSCRIPT
+		| SCRIPTYPE exps SLASHSCRIPT NEWLINE
 		;
 
-CONT: exp
-		| CONT exp
-		|
+exps 	: exps exp
+	  	| exp
 		;
 
-exp     : 
-		exp
-		| exp PLUS NUM
-		| ID
+exp 	: NEWLINE
+		| VAR leftequ
+		| leftequ
+	  	;
+
+leftequ	: ID EQUAL rightequ
 ;
+
+rightequ : NUM
+		 | equ
+		 ;
+
+equ 	: ID EQUAL plussign
+	 	| ID EQUAL minusign
+		| ID EQUAL timesign
+		| ID EQUAL dividesign
+;
+
+plussign : NUM PLUS NUM
+		 ;
+
+minusign : NUM MINUS NUM
+		 ;
+
+timesign : NUM TIME NUM
+		 ;
+
+dividesign : NUM DIVIDE NUM
+		   ;
+
 %%
 
 FILE *yyin;
@@ -44,7 +68,7 @@ main(int argc, char *argv[])
 			yyparse();
 		}
 	} else {
-		fprintf(stderr, "format: ./yacc_example [filename]");
+		fprintf(stderr, "format: ./yacc_example [filename]\n");
 	}
 }
 
