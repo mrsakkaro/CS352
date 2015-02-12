@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "y.tab.h"
 #include <string.h>
+#include "debug.h"
 %}
 
 %option yylineno
@@ -10,7 +11,7 @@ delim   [ \t]
 ws      {delim}+
 letter  [A-Za-z]
 digit   [0-9]
-id      {letter}({letter}|{digit})*
+id      {letter}({letter}|{digit}|_)*
 num     {digit}*
 
 
@@ -18,42 +19,42 @@ num     {digit}*
 %%
 
 "<script type=\"text/JavaScript\">" {
-	printf("<text/Javascript>\n");
+	debug("<text/Javascript>\n");
 	return SCRIPTYPE;
 }
 
 "</script>" {
-	printf("</script>\n");
+	debug("</script>\n");
 	return SLASHSCRIPT;
 }
 
 (document.write) {
-	printf("docu.write");
+	debug("docu.write");
 	return DOCUWRITE;
 }
 
 "(" {
-	printf("(");
+	debug("(");
 	return OPENPARENT;
 }
 
 ")" {
-	printf(")");
+	debug(")");
 	return CLOSEPARENT;
 }
 
 ";" {
-	printf("SEMICOLON");
+	debug("SEMICOLON");
 	return SEMICOLON;
 }
 
 "=" {
-	printf("EQUAL ");
+	debug("EQUAL ");
 	return EQUAL;
 }
 
 "," {
-	printf("PAUSE ");
+	debug("PAUSE ");
 	return COMMA;
 }
 
@@ -62,7 +63,7 @@ num     {digit}*
 }
 
 "+" {
-	printf("PLUS ");
+	debug("PLUS ");
 	return PLUS;
 }
 
@@ -76,33 +77,34 @@ num     {digit}*
 
 "\n" {
 	// Newline character is found.
-	printf("\n");
+	debug("\n");
 	return NEWLINE;
 }
 
 "var " {
-	printf("var ");
+	debug("var ");
 	return VAR;
 }
 
 {id} {
-	printf("ID ");
+	debug("ID ");
 	return ID;
 }
 
 [0-9]+ {
-	printf("NUMBER ");
+	debug("NUMBER ");
 	return NUM;
 }
 
 ["].*["] {
-	printf("QQUO ");
+	debug("QQUO ");
 	return QQUO;
 }
 
 {ws} {
-	
+
 }
+
 
 
 

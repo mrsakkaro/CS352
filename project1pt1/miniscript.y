@@ -1,8 +1,9 @@
 %{
 #include<stdio.h>
+#include "debug.h"
 %}
 
-%token ID NUM PLUS SCRIPTYPE SLASHSCRIPT NEWLINE VAR EQUAL SEMICOLON TIME MINUS DIVIDE QQUO DOCUWRITE OPENPARENT CLOSEPARENT COMMA
+%token ID NUM PLUS SCRIPTYPE SLASHSCRIPT NEWLINE VAR EQUAL SEMICOLON TIME MINUS DIVIDE QQUO DOCUWRITE OPENPARENT CLOSEPARENT COMMA WS
 %start parse
 
 %%
@@ -12,7 +13,7 @@ parse 	: SCRIPTYPE lines SLASHSCRIPT
 		;
 
 lines 	: line lines
-	  	|
+		| line
 		;
 
 line 	: NEWLINE
@@ -25,7 +26,7 @@ line 	: NEWLINE
 docu 	:  DOCUWRITE OPENPARENT param CLOSEPARENT
 	  	;
 
-param 	: exps 
+param 	: exps
 	    | exps COMMA param
 		|
 	   	;
@@ -43,7 +44,6 @@ exps 	: OPENPARENT exps CLOSEPARENT
 	  	| QQUO
 		| ID
 	  	;
-
 
 arith 	: arithT
 	   	| arithD
@@ -70,9 +70,12 @@ int yylineno;
 yyerror(char *s)
 {
 	fprintf(stderr, "error: %s, line: %d\n", s, yylineno);
+	return 1;
 }
 
-main(int argc, char *argv[])
+int debug = 0;
+
+int main(int argc, char *argv[])
 {
 	//yydebug = 1;
 	if (argc == 2) {
@@ -88,6 +91,7 @@ main(int argc, char *argv[])
 	} else {
 		fprintf(stderr, "format: ./yacc_example [filename]\n");
 	}
+	return 0;
 }
 
 
