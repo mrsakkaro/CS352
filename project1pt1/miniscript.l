@@ -27,6 +27,21 @@ num     {digit}*
 	return SLASHSCRIPT;
 }
 
+(document.write) {
+	printf("docu.write");
+	return DOCUWRITE;
+}
+
+"(" {
+	printf("(");
+	return OPENPARENT;
+}
+
+")" {
+	printf(")");
+	return CLOSEPARENT;
+}
+
 ";" {
 	printf("SEMICOLON");
 	return SEMICOLON;
@@ -37,11 +52,17 @@ num     {digit}*
 	return EQUAL;
 }
 
+"," {
+	printf("PAUSE ");
+	return COMMA;
+}
+
 "*" {
 	return TIME;
 }
 
 "+" {
+	printf("PLUS ");
 	return PLUS;
 }
 
@@ -72,6 +93,11 @@ num     {digit}*
 [0-9]+ {
 	printf("NUMBER ");
 	return NUM;
+}
+
+["].*["] {
+	printf("QQUO ");
+	return QQUO;
 }
 
 {ws} {

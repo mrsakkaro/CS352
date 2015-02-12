@@ -2,48 +2,66 @@
 #include<stdio.h>
 %}
 
-%token ID NUM PLUS SCRIPTYPE SLASHSCRIPT NEWLINE VAR EQUAL SEMICOLON TIME MINUS DIVIDE
+%token ID NUM PLUS SCRIPTYPE SLASHSCRIPT NEWLINE VAR EQUAL SEMICOLON TIME MINUS DIVIDE QQUO DOCUWRITE OPENPARENT CLOSEPARENT COMMA
 %start parse
 
 %%
 
-parse 	: SCRIPTYPE exps SLASHSCRIPT
-		| SCRIPTYPE exps SLASHSCRIPT NEWLINE
+parse 	: SCRIPTYPE lines SLASHSCRIPT
+		| SCRIPTYPE lines SLASHSCRIPT NEWLINE
 		;
 
-exps 	: exps exp
-	  	| exp
+lines 	: line lines
+	  	|
 		;
 
-exp 	: NEWLINE
+line 	: NEWLINE
 		| VAR leftequ
 		| leftequ
+		| docu
+		| SEMICOLON
 	  	;
 
-leftequ	: ID EQUAL rightequ
+docu 	:  DOCUWRITE OPENPARENT param CLOSEPARENT
+	  	;
+
+param 	: exps 
+	    | exps COMMA param
+		|
+	   	;
+
+leftequ	: ID EQUAL exps
+		| ID
 ;
 
-rightequ : NUM
-		 | equ
-		 ;
+exps 	: OPENPARENT exps CLOSEPARENT
+	  	| OPENPARENT exps CLOSEPARENT arith
+		| NUM arith
+		| ID arith
+		| QQUO arith
+	  	| NUM
+	  	| QQUO
+		| ID
+	  	;
 
-equ 	: ID EQUAL plussign
-	 	| ID EQUAL minusign
-		| ID EQUAL timesign
-		| ID EQUAL dividesign
-;
 
-plussign : NUM PLUS NUM
-		 ;
+arith 	: arithT
+	   	| arithD
+		| arithP
+		| arithM
+		;
 
-minusign : NUM MINUS NUM
-		 ;
+arithP 	: PLUS exps
+		;
 
-timesign : NUM TIME NUM
-		 ;
+arithM 	: MINUS exps
+		;
 
-dividesign : NUM DIVIDE NUM
-		   ;
+arithT 	: TIME exps
+		;
+
+arithD 	: DIVIDE exps
+		;
 
 %%
 
