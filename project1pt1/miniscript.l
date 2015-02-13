@@ -28,6 +28,11 @@ num     {digit}*
 	return SLASHSCRIPT;
 }
 
+"." {
+	debug("dot ");
+	return DOT;
+}
+
 (document.write) {
 	debug("docu.write");
 	return DOCUWRITE;
@@ -81,7 +86,7 @@ num     {digit}*
 	return NEWLINE;
 }
 
-"var " {
+"var" {
 	debug("var ");
 	return VAR;
 }
@@ -104,9 +109,6 @@ num     {digit}*
 {ws} {
 
 }
-
-
-
 
 %%
 

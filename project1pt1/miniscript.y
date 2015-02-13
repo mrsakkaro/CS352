@@ -3,7 +3,7 @@
 #include "debug.h"
 %}
 
-%token ID NUM PLUS SCRIPTYPE SLASHSCRIPT NEWLINE VAR EQUAL SEMICOLON TIME MINUS DIVIDE QQUO DOCUWRITE OPENPARENT CLOSEPARENT COMMA WS
+%token ID NUM PLUS SCRIPTYPE SLASHSCRIPT NEWLINE VAR EQUAL SEMICOLON TIME MINUS DIVIDE QQUO DOCUWRITE OPENPARENT CLOSEPARENT COMMA WS DOT
 %start parse
 
 %%
@@ -13,17 +13,20 @@ parse 	: SCRIPTYPE lines SLASHSCRIPT
 		;
 
 lines 	: line lines
-		| line
+		| /* It can be empty */
 		;
 
-line 	: NEWLINE
-		| VAR leftequ
-		| leftequ
-		| docu
-		| SEMICOLON
+line 	: VAR leftequ over
+		| leftequ over
+		| docu over
+		| NEWLINE
 	  	;
 
-docu 	:  DOCUWRITE OPENPARENT param CLOSEPARENT
+over 	: SEMICOLON
+	  	| NEWLINE
+		;
+
+docu 	: DOCUWRITE OPENPARENT param CLOSEPARENT
 	  	;
 
 param 	: exps
