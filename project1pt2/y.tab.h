@@ -46,20 +46,21 @@
      NEWLINE = 263,
      VAR = 264,
      EQUAL = 265,
-     SEMICOLON = 266,
-     DOCUWRITE = 267,
-     OPENPARENT = 268,
-     CLOSEPARENT = 269,
-     COMMA = 270,
-     WS = 271,
-     DOT = 272,
-     BR = 273,
-     CUROPENBRAC = 274,
-     CURCLOSEBRAC = 275,
-     MINUS = 276,
-     PLUS = 277,
-     DIVIDE = 278,
-     TIME = 279
+     COLON = 266,
+     SEMICOLON = 267,
+     DOCUWRITE = 268,
+     OPENPARENT = 269,
+     CLOSEPARENT = 270,
+     COMMA = 271,
+     WS = 272,
+     DOT = 273,
+     BR = 274,
+     CUROPENBRAC = 275,
+     CURCLOSEBRAC = 276,
+     MINUS = 277,
+     PLUS = 278,
+     DIVIDE = 279,
+     TIME = 280
    };
 #endif
 /* Tokens.  */
@@ -71,20 +72,21 @@
 #define NEWLINE 263
 #define VAR 264
 #define EQUAL 265
-#define SEMICOLON 266
-#define DOCUWRITE 267
-#define OPENPARENT 268
-#define CLOSEPARENT 269
-#define COMMA 270
-#define WS 271
-#define DOT 272
-#define BR 273
-#define CUROPENBRAC 274
-#define CURCLOSEBRAC 275
-#define MINUS 276
-#define PLUS 277
-#define DIVIDE 278
-#define TIME 279
+#define COLON 266
+#define SEMICOLON 267
+#define DOCUWRITE 268
+#define OPENPARENT 269
+#define CLOSEPARENT 270
+#define COMMA 271
+#define WS 272
+#define DOT 273
+#define BR 274
+#define CUROPENBRAC 275
+#define CURCLOSEBRAC 276
+#define MINUS 277
+#define PLUS 278
+#define DIVIDE 279
+#define TIME 280
 
 
 
@@ -94,15 +96,15 @@ typedef union YYSTYPE
 {
 
 /* Line 1685 of yacc.c  */
-#line 30 "miniscript.y"
+#line 31 "miniscript.y"
 
-	char * string_val;
+	char *string_val;
 	int int_val;
 
 
 
 /* Line 1685 of yacc.c  */
-#line 106 "y.tab.h"
+#line 108 "y.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

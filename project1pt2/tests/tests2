@@ -1,0 +1,8 @@
+<script type="text/JavaScript">
+var person = {};
+person.firstName = "Stephen";
+person.lastName = "Hong";
+person.Age = 23;
+var second = "world!";
+document.write(person.FirstName);
+</script>

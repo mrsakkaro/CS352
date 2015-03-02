@@ -1,6 +1,4 @@
 <script type="text/JavaScript">
-var first = "hello ";
-var second = "world!";
-var print = first + second;
-document.write(print);
+var person = {firstName : "Stephen", lastName : "Hong", age : 23, eyeColor = "Black"+"White"};
+document.write(person.FirstName);
 </script>

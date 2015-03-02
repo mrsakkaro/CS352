@@ -61,6 +61,14 @@ num     {digit}*
 	return SEMICOLON;
 }
 
+"." {
+	debug("DOT");
+	return DOT;
+
+":" {
+	debug("COLON");
+	return COLON;
+
 "=" {
 	debug("EQUAL ");
 	return EQUAL;

@@ -1,6 +1,7 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "debug.h"
 #include <map>
 #include <string>
@@ -28,12 +29,12 @@ int quit;
 string curID;
 %}
 %union {
-	char * string_val;
+	char *string_val;
 	int int_val;
 }
 %token <string_val> ID QQUO 
 %token <int_val> NUM
-%token SCRIPTYPE SLASHSCRIPT NEWLINE VAR EQUAL SEMICOLON DOCUWRITE OPENPARENT CLOSEPARENT COMMA WS DOT BR CUROPENBRAC CURCLOSEBRAC
+%token SCRIPTYPE SLASHSCRIPT NEWLINE VAR EQUAL COLON SEMICOLON DOCUWRITE OPENPARENT CLOSEPARENT COMMA WS DOT BR CUROPENBRAC CURCLOSEBRAC
 %left PLUS MINUS
 %left TIME DIVIDE
 %start parse
@@ -69,28 +70,39 @@ line 	: VAR ID EQUAL exps over {
 			}
 			//printf("exps is %d\n", $4);
 		}
-	/*	| VAR ID {
+		| VAR ID {
 			struct block * temp = tbl[$2];
-			if (temp == NULL) {
-				
+			if (temp != NULL) {
+				printf("error!!\n");
+				quit = 1;
+			} else {
+				struct block * temp = (struct block*) malloc(sizeof(struct block));
+				temp->type = 2;
 			}
-		} EQUAL CUROPENBRAC object CURCLOSEBRAC SEMICOLON */
+		} EQUAL CUROPENBRAC object CURCLOSEBRAC SEMICOLON { 
+			quit = 0;
+		}
 		| VAR ID
 		| ID EQUAL exps over {
 			// Initialize
 			//printf("initialize ");
-			struct block * temp = tbl[$1];
-			if (temp == NULL) {
-				printf("ID doesn't exist\n");
-			} else {
-				struct block * temp = (struct block*) malloc(sizeof(struct block));
-				temp->type = varType;
-				if ( varType == 1 ) {
-					temp->num = $<int_val>4;
-				} else if (varType = 3 ) {
-					temp->data = $<string_val>4;
+			char * token;
+			if((token = strtok($1, ".")) == NULL) {
+				struct block * temp = tbl[$1];
+				if (temp == NULL) {
+					printf("ID doesn't exist\n");
+				} else {
+				//	struct block * temp = (struct block*) malloc(sizeof(struct block));
+					temp->type = varType;
+					if ( varType == 1 ) {
+						temp->num = $<int_val>3;
+					} else if (varType = 3 ) {
+						temp->data = $<string_val>3;
+					}
+					tbl[$1] = temp;
 				}
-				tbl[$1] = temp;
+			} else {
+				printf("token is %s\n", token);
 			}
 		}
 		| ID
@@ -115,7 +127,7 @@ param 	: exps {
 			}
 		}
 	    | exps { 
-			if(varType==1) {
+			if (varType==1) {
 				printf("\nint\n");
 				printf("%d", $<int_val>1);
 			} 
@@ -159,8 +171,10 @@ exps 	: NUM {
 		}
 		| exps PLUS exps {
 	  		if(varType == 3) {
-				string temp = $<string_val>1 + $<string_val>2;
-				$<string_val>$ = temp;
+				string temp = $<string_val>1;
+				temp = temp + $<string_val>3;
+			//	printf("temp is %s\n", strdup(temp.c_str()));
+				$<string_val>$ = strdup(temp.c_str());
 			}
 			else if (varType == 1) {
 				varType = 1;
@@ -197,8 +211,11 @@ exps 	: NUM {
 		}
 		;
 
-object 	: ID EQUAL exps COMMA object
+object 	: ID COLON exps
+		| object COMMA object
+	/*	| object COMMA NEWLINE object */
 		;
+
 %%
 
 int yyerror(const char *s)
