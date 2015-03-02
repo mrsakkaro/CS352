@@ -1,4 +1,5 @@
 <script type="text/JavaScript">
-var person = {firstName : "Stephen", lastName : "Hong", age : 23, eyeColor = "Black"+"White"};
-document.write(person.FirstName);
+var person = {firstName : "Stephen", lastName : "Hong", age : 23, hair : "Black"+"White"};
+document.write("NAME = ", person.firstName);
+document.write("Age = ", person.age);
 </script>

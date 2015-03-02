@@ -14,7 +14,7 @@ delim   [ \t]
 ws      {delim}+
 letter  [A-Za-z]
 digit   [0-9]
-id      {letter}({letter}|{digit}|_)*('.'{letter}({letter}|{digit}|_)*)*
+id      ([A-Za-z]([A-Za-z]|[0-9]|_)*)(\.([A-Za-z]([A-Za-z]|[0-9]|_)*))*
 num     {digit}*
 
 
@@ -61,13 +61,15 @@ num     {digit}*
 	return SEMICOLON;
 }
 
-"." {
-	debug("DOT");
-	return DOT;
-
 ":" {
 	debug("COLON");
 	return COLON;
+}
+
+"." {
+	debug("DOT");
+	return DOT;
+}
 
 "=" {
 	debug("EQUAL ");
@@ -126,7 +128,7 @@ num     {digit}*
 	return NUM;
 }
 
-["].*["] {
+["].[^\n"]*["] {
 	debug("QQUO ");
 	char * temp = strdup(yytext);
 	temp++;

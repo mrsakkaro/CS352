@@ -57,10 +57,10 @@
      BR = 274,
      CUROPENBRAC = 275,
      CURCLOSEBRAC = 276,
-     MINUS = 277,
-     PLUS = 278,
-     DIVIDE = 279,
-     TIME = 280
+     PLUS = 277,
+     MINUS = 278,
+     TIME = 279,
+     DIVIDE = 280
    };
 #endif
 /* Tokens.  */
@@ -83,10 +83,10 @@
 #define BR 274
 #define CUROPENBRAC 275
 #define CURCLOSEBRAC 276
-#define MINUS 277
-#define PLUS 278
-#define DIVIDE 279
-#define TIME 280
+#define PLUS 277
+#define MINUS 278
+#define TIME 279
+#define DIVIDE 280
 
 
 

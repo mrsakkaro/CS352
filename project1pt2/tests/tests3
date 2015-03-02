@@ -1,0 +1,11 @@
+<script type="text/JavaScript">
+var first = 3;
+var second = 5*3;
+var third = 1 + 2 * 3;
+var fourth = "hello ";
+var fifth = "world!";
+document.write("SUM! ", third);
+document.write("MATH! ", 1+2*3);
+document.write(1 + 2 * 3);
+document.write("HW! ", fourth + fifth);
+</script>

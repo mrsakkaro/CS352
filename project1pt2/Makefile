@@ -1,10 +1,10 @@
 all: miniscript lex.yy.c
 
 miniscript: y.tab.c lex.yy.c
-	g++ y.tab.c lex.yy.c -o parser -lfl
+	g++ -g y.tab.c lex.yy.c -o parser -lfl
 
 y.tab.c: miniscript.y
-	bison -y -d -g -t --debug miniscript.y
+	bison -y -d -g -t -v --debug miniscript.y
 
 lex.yy.c: miniscript.l
 	lex miniscript.l

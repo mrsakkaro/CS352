@@ -4,5 +4,7 @@ person.firstName = "Stephen";
 person.lastName = "Hong";
 person.Age = 23;
 var second = "world!";
-document.write(person.FirstName);
+document.write("Last Name ", person.lastName);
+document.write("Age " , person.Age);
+document.write("second ", second);
 </script>
