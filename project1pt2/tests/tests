@@ -1,0 +1,6 @@
+<script type="text/JavaScript">
+var first = "hello ";
+var second = "world!";
+var print = first + second;
+document.write(print);
+</script>

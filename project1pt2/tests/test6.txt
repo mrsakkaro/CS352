@@ -1,0 +1,4 @@
+<script type="text/JavaScript">
+var ID = 1 + 2 * 4;
+document.write("hello = ", ID);
+</script>
