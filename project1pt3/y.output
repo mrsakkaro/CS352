@@ -1,0 +1,795 @@
+Terminals unused in grammar
+
+   WS
+   DOT
+   BR
+
+
+Grammar
+
+    0 $accept: parse $end
+
+    1 parse: SCRIPTYPE lines SLASHSCRIPT
+    2      | SCRIPTYPE lines SLASHSCRIPT NEWLINE
+
+    3 lines: line lines
+    4      | /* empty */
+
+    5 line: VAR ID EQUAL exps over
+    6     | VAR ID over
+
+    7 $@1: /* empty */
+
+    8 line: VAR ID EQUAL CUROPENBRAC $@1 object CURCLOSEBRAC over
+
+    9 $@2: /* empty */
+
+   10 line: VAR ID EQUAL CUROPENBRAC CURCLOSEBRAC $@2 over
+   11     | ID EQUAL exps over
+   12     | DOCUWRITE OPENPARENT param CLOSEPARENT over
+   13     | NEWLINE
+
+   14 over: SEMICOLON
+   15     | NEWLINE
+
+   16 param: exps
+
+   17 $@3: /* empty */
+
+   18 param: exps $@3 COMMA param
+   19      | /* empty */
+
+   20 exp2: exp2 TIME exp3
+   21     | exp2 DIVIDE exp3
+   22     | exp3
+   23     | QQUO
+
+   24 exp3: OPENPARENT exps CLOSEPARENT
+   25     | NUM
+   26     | ID
+
+   27 exps: exps PLUS exp2
+   28     | exps MINUS exp2
+   29     | exp2
+
+   30 object1: ID COLON exps
+
+   31 object: object1
+   32       | object1 NEWLINE
+   33       | NEWLINE object1
+   34       | NEWLINE object1 NEWLINE
+   35       | object COMMA object1
+   36       | object COMMA NEWLINE object1
+   37       | object COMMA NEWLINE object1 NEWLINE
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+ID (258) 5 6 8 10 11 26 30
+QQUO (259) 23
+NUM (260) 25
+SCRIPTYPE (261) 1 2
+SLASHSCRIPT (262) 1 2
+NEWLINE (263) 2 13 15 32 33 34 36 37
+VAR (264) 5 6 8 10
+EQUAL (265) 5 8 10 11
+COLON (266) 30
+SEMICOLON (267) 14
+DOCUWRITE (268) 12
+OPENPARENT (269) 12 24
+CLOSEPARENT (270) 12 24
+COMMA (271) 18 35 36 37
+WS (272)
+DOT (273)
+CUROPENBRAC (274) 8 10
+CURCLOSEBRAC (275) 8 10
+PLUS (276) 27
+MINUS (277) 28
+TIME (278) 20
+DIVIDE (279) 21
+BR (280)
+
+
+Nonterminals, with rules where they appear
+
+$accept (26)
+    on left: 0
+parse (27)
+    on left: 1 2, on right: 0
+lines (28)
+    on left: 3 4, on right: 1 2 3
+line (29)
+    on left: 5 6 8 10 11 12 13, on right: 3
+$@1 (30)
+    on left: 7, on right: 8
+$@2 (31)
+    on left: 9, on right: 10
+over (32)
+    on left: 14 15, on right: 5 6 8 10 11 12
+param (33)
+    on left: 16 18 19, on right: 12 18
+$@3 (34)
+    on left: 17, on right: 18
+exp2 (35)
+    on left: 20 21 22 23, on right: 20 21 27 28 29
+exp3 (36)
+    on left: 24 25 26, on right: 20 21 22
+exps (37)
+    on left: 27 28 29, on right: 5 11 16 18 24 27 28 30
+object1 (38)
+    on left: 30, on right: 31 32 33 34 35 36 37
+object (39)
+    on left: 31 32 33 34 35 36 37, on right: 8 35 36 37
+
+
+state 0
+
+    0 $accept: . parse $end
+
+    SCRIPTYPE  shift, and go to state 1
+
+    parse  go to state 2
+
+
+state 1
+
+    1 parse: SCRIPTYPE . lines SLASHSCRIPT
+    2      | SCRIPTYPE . lines SLASHSCRIPT NEWLINE
+
+    ID         shift, and go to state 3
+    NEWLINE    shift, and go to state 4
+    VAR        shift, and go to state 5
+    DOCUWRITE  shift, and go to state 6
+
+    $default  reduce using rule 4 (lines)
+
+    lines  go to state 7
+    line   go to state 8
+
+
+state 2
+
+    0 $accept: parse . $end
+
+    $end  shift, and go to state 9
+
+
+state 3
+
+   11 line: ID . EQUAL exps over
+
+    EQUAL  shift, and go to state 10
+
+
+state 4
+
+   13 line: NEWLINE .
+
+    $default  reduce using rule 13 (line)
+
+
+state 5
+
+    5 line: VAR . ID EQUAL exps over
+    6     | VAR . ID over
+    8     | VAR . ID EQUAL CUROPENBRAC $@1 object CURCLOSEBRAC over
+   10     | VAR . ID EQUAL CUROPENBRAC CURCLOSEBRAC $@2 over
+
+    ID  shift, and go to state 11
+
+
+state 6
+
+   12 line: DOCUWRITE . OPENPARENT param CLOSEPARENT over
+
+    OPENPARENT  shift, and go to state 12
+
+
+state 7
+
+    1 parse: SCRIPTYPE lines . SLASHSCRIPT
+    2      | SCRIPTYPE lines . SLASHSCRIPT NEWLINE
+
+    SLASHSCRIPT  shift, and go to state 13
+
+
+state 8
+
+    3 lines: line . lines
+
+    ID         shift, and go to state 3
+    NEWLINE    shift, and go to state 4
+    VAR        shift, and go to state 5
+    DOCUWRITE  shift, and go to state 6
+
+    $default  reduce using rule 4 (lines)
+
+    lines  go to state 14
+    line   go to state 8
+
+
+state 9
+
+    0 $accept: parse $end .
+
+    $default  accept
+
+
+state 10
+
+   11 line: ID EQUAL . exps over
+
+    ID          shift, and go to state 15
+    QQUO        shift, and go to state 16
+    NUM         shift, and go to state 17
+    OPENPARENT  shift, and go to state 18
+
+    exp2  go to state 19
+    exp3  go to state 20
+    exps  go to state 21
+
+
+state 11
+
+    5 line: VAR ID . EQUAL exps over
+    6     | VAR ID . over
+    8     | VAR ID . EQUAL CUROPENBRAC $@1 object CURCLOSEBRAC over
+   10     | VAR ID . EQUAL CUROPENBRAC CURCLOSEBRAC $@2 over
+
+    NEWLINE    shift, and go to state 22
+    EQUAL      shift, and go to state 23
+    SEMICOLON  shift, and go to state 24
+
+    over  go to state 25
+
+
+state 12
+
+   12 line: DOCUWRITE OPENPARENT . param CLOSEPARENT over
+
+    ID          shift, and go to state 15
+    QQUO        shift, and go to state 16
+    NUM         shift, and go to state 17
+    OPENPARENT  shift, and go to state 18
+
+    $default  reduce using rule 19 (param)
+
+    param  go to state 26
+    exp2   go to state 19
+    exp3   go to state 20
+    exps   go to state 27
+
+
+state 13
+
+    1 parse: SCRIPTYPE lines SLASHSCRIPT .
+    2      | SCRIPTYPE lines SLASHSCRIPT . NEWLINE
+
+    NEWLINE  shift, and go to state 28
+
+    $default  reduce using rule 1 (parse)
+
+
+state 14
+
+    3 lines: line lines .
+
+    $default  reduce using rule 3 (lines)
+
+
+state 15
+
+   26 exp3: ID .
+
+    $default  reduce using rule 26 (exp3)
+
+
+state 16
+
+   23 exp2: QQUO .
+
+    $default  reduce using rule 23 (exp2)
+
+
+state 17
+
+   25 exp3: NUM .
+
+    $default  reduce using rule 25 (exp3)
+
+
+state 18
+
+   24 exp3: OPENPARENT . exps CLOSEPARENT
+
+    ID          shift, and go to state 15
+    QQUO        shift, and go to state 16
+    NUM         shift, and go to state 17
+    OPENPARENT  shift, and go to state 18
+
+    exp2  go to state 19
+    exp3  go to state 20
+    exps  go to state 29
+
+
+state 19
+
+   20 exp2: exp2 . TIME exp3
+   21     | exp2 . DIVIDE exp3
+   29 exps: exp2 .
+
+    TIME    shift, and go to state 30
+    DIVIDE  shift, and go to state 31
+
+    $default  reduce using rule 29 (exps)
+
+
+state 20
+
+   22 exp2: exp3 .
+
+    $default  reduce using rule 22 (exp2)
+
+
+state 21
+
+   11 line: ID EQUAL exps . over
+   27 exps: exps . PLUS exp2
+   28     | exps . MINUS exp2
+
+    NEWLINE    shift, and go to state 22
+    SEMICOLON  shift, and go to state 24
+    PLUS       shift, and go to state 32
+    MINUS      shift, and go to state 33
+
+    over  go to state 34
+
+
+state 22
+
+   15 over: NEWLINE .
+
+    $default  reduce using rule 15 (over)
+
+
+state 23
+
+    5 line: VAR ID EQUAL . exps over
+    8     | VAR ID EQUAL . CUROPENBRAC $@1 object CURCLOSEBRAC over
+   10     | VAR ID EQUAL . CUROPENBRAC CURCLOSEBRAC $@2 over
+
+    ID           shift, and go to state 15
+    QQUO         shift, and go to state 16
+    NUM          shift, and go to state 17
+    OPENPARENT   shift, and go to state 18
+    CUROPENBRAC  shift, and go to state 35
+
+    exp2  go to state 19
+    exp3  go to state 20
+    exps  go to state 36
+
+
+state 24
+
+   14 over: SEMICOLON .
+
+    $default  reduce using rule 14 (over)
+
+
+state 25
+
+    6 line: VAR ID over .
+
+    $default  reduce using rule 6 (line)
+
+
+state 26
+
+   12 line: DOCUWRITE OPENPARENT param . CLOSEPARENT over
+
+    CLOSEPARENT  shift, and go to state 37
+
+
+state 27
+
+   16 param: exps .
+   18      | exps . $@3 COMMA param
+   27 exps: exps . PLUS exp2
+   28     | exps . MINUS exp2
+
+    PLUS   shift, and go to state 32
+    MINUS  shift, and go to state 33
+
+    COMMA     reduce using rule 17 ($@3)
+    $default  reduce using rule 16 (param)
+
+    $@3  go to state 38
+
+
+state 28
+
+    2 parse: SCRIPTYPE lines SLASHSCRIPT NEWLINE .
+
+    $default  reduce using rule 2 (parse)
+
+
+state 29
+
+   24 exp3: OPENPARENT exps . CLOSEPARENT
+   27 exps: exps . PLUS exp2
+   28     | exps . MINUS exp2
+
+    CLOSEPARENT  shift, and go to state 39
+    PLUS         shift, and go to state 32
+    MINUS        shift, and go to state 33
+
+
+state 30
+
+   20 exp2: exp2 TIME . exp3
+
+    ID          shift, and go to state 15
+    NUM         shift, and go to state 17
+    OPENPARENT  shift, and go to state 18
+
+    exp3  go to state 40
+
+
+state 31
+
+   21 exp2: exp2 DIVIDE . exp3
+
+    ID          shift, and go to state 15
+    NUM         shift, and go to state 17
+    OPENPARENT  shift, and go to state 18
+
+    exp3  go to state 41
+
+
+state 32
+
+   27 exps: exps PLUS . exp2
+
+    ID          shift, and go to state 15
+    QQUO        shift, and go to state 16
+    NUM         shift, and go to state 17
+    OPENPARENT  shift, and go to state 18
+
+    exp2  go to state 42
+    exp3  go to state 20
+
+
+state 33
+
+   28 exps: exps MINUS . exp2
+
+    ID          shift, and go to state 15
+    QQUO        shift, and go to state 16
+    NUM         shift, and go to state 17
+    OPENPARENT  shift, and go to state 18
+
+    exp2  go to state 43
+    exp3  go to state 20
+
+
+state 34
+
+   11 line: ID EQUAL exps over .
+
+    $default  reduce using rule 11 (line)
+
+
+state 35
+
+    8 line: VAR ID EQUAL CUROPENBRAC . $@1 object CURCLOSEBRAC over
+   10     | VAR ID EQUAL CUROPENBRAC . CURCLOSEBRAC $@2 over
+
+    CURCLOSEBRAC  shift, and go to state 44
+
+    $default  reduce using rule 7 ($@1)
+
+    $@1  go to state 45
+
+
+state 36
+
+    5 line: VAR ID EQUAL exps . over
+   27 exps: exps . PLUS exp2
+   28     | exps . MINUS exp2
+
+    NEWLINE    shift, and go to state 22
+    SEMICOLON  shift, and go to state 24
+    PLUS       shift, and go to state 32
+    MINUS      shift, and go to state 33
+
+    over  go to state 46
+
+
+state 37
+
+   12 line: DOCUWRITE OPENPARENT param CLOSEPARENT . over
+
+    NEWLINE    shift, and go to state 22
+    SEMICOLON  shift, and go to state 24
+
+    over  go to state 47
+
+
+state 38
+
+   18 param: exps $@3 . COMMA param
+
+    COMMA  shift, and go to state 48
+
+
+state 39
+
+   24 exp3: OPENPARENT exps CLOSEPARENT .
+
+    $default  reduce using rule 24 (exp3)
+
+
+state 40
+
+   20 exp2: exp2 TIME exp3 .
+
+    $default  reduce using rule 20 (exp2)
+
+
+state 41
+
+   21 exp2: exp2 DIVIDE exp3 .
+
+    $default  reduce using rule 21 (exp2)
+
+
+state 42
+
+   20 exp2: exp2 . TIME exp3
+   21     | exp2 . DIVIDE exp3
+   27 exps: exps PLUS exp2 .
+
+    TIME    shift, and go to state 30
+    DIVIDE  shift, and go to state 31
+
+    $default  reduce using rule 27 (exps)
+
+
+state 43
+
+   20 exp2: exp2 . TIME exp3
+   21     | exp2 . DIVIDE exp3
+   28 exps: exps MINUS exp2 .
+
+    TIME    shift, and go to state 30
+    DIVIDE  shift, and go to state 31
+
+    $default  reduce using rule 28 (exps)
+
+
+state 44
+
+   10 line: VAR ID EQUAL CUROPENBRAC CURCLOSEBRAC . $@2 over
+
+    $default  reduce using rule 9 ($@2)
+
+    $@2  go to state 49
+
+
+state 45
+
+    8 line: VAR ID EQUAL CUROPENBRAC $@1 . object CURCLOSEBRAC over
+
+    ID       shift, and go to state 50
+    NEWLINE  shift, and go to state 51
+
+    object1  go to state 52
+    object   go to state 53
+
+
+state 46
+
+    5 line: VAR ID EQUAL exps over .
+
+    $default  reduce using rule 5 (line)
+
+
+state 47
+
+   12 line: DOCUWRITE OPENPARENT param CLOSEPARENT over .
+
+    $default  reduce using rule 12 (line)
+
+
+state 48
+
+   18 param: exps $@3 COMMA . param
+
+    ID          shift, and go to state 15
+    QQUO        shift, and go to state 16
+    NUM         shift, and go to state 17
+    OPENPARENT  shift, and go to state 18
+
+    $default  reduce using rule 19 (param)
+
+    param  go to state 54
+    exp2   go to state 19
+    exp3   go to state 20
+    exps   go to state 27
+
+
+state 49
+
+   10 line: VAR ID EQUAL CUROPENBRAC CURCLOSEBRAC $@2 . over
+
+    NEWLINE    shift, and go to state 22
+    SEMICOLON  shift, and go to state 24
+
+    over  go to state 55
+
+
+state 50
+
+   30 object1: ID . COLON exps
+
+    COLON  shift, and go to state 56
+
+
+state 51
+
+   33 object: NEWLINE . object1
+   34       | NEWLINE . object1 NEWLINE
+
+    ID  shift, and go to state 50
+
+    object1  go to state 57
+
+
+state 52
+
+   31 object: object1 .
+   32       | object1 . NEWLINE
+
+    NEWLINE  shift, and go to state 58
+
+    $default  reduce using rule 31 (object)
+
+
+state 53
+
+    8 line: VAR ID EQUAL CUROPENBRAC $@1 object . CURCLOSEBRAC over
+   35 object: object . COMMA object1
+   36       | object . COMMA NEWLINE object1
+   37       | object . COMMA NEWLINE object1 NEWLINE
+
+    COMMA         shift, and go to state 59
+    CURCLOSEBRAC  shift, and go to state 60
+
+
+state 54
+
+   18 param: exps $@3 COMMA param .
+
+    $default  reduce using rule 18 (param)
+
+
+state 55
+
+   10 line: VAR ID EQUAL CUROPENBRAC CURCLOSEBRAC $@2 over .
+
+    $default  reduce using rule 10 (line)
+
+
+state 56
+
+   30 object1: ID COLON . exps
+
+    ID          shift, and go to state 15
+    QQUO        shift, and go to state 16
+    NUM         shift, and go to state 17
+    OPENPARENT  shift, and go to state 18
+
+    exp2  go to state 19
+    exp3  go to state 20
+    exps  go to state 61
+
+
+state 57
+
+   33 object: NEWLINE object1 .
+   34       | NEWLINE object1 . NEWLINE
+
+    NEWLINE  shift, and go to state 62
+
+    $default  reduce using rule 33 (object)
+
+
+state 58
+
+   32 object: object1 NEWLINE .
+
+    $default  reduce using rule 32 (object)
+
+
+state 59
+
+   35 object: object COMMA . object1
+   36       | object COMMA . NEWLINE object1
+   37       | object COMMA . NEWLINE object1 NEWLINE
+
+    ID       shift, and go to state 50
+    NEWLINE  shift, and go to state 63
+
+    object1  go to state 64
+
+
+state 60
+
+    8 line: VAR ID EQUAL CUROPENBRAC $@1 object CURCLOSEBRAC . over
+
+    NEWLINE    shift, and go to state 22
+    SEMICOLON  shift, and go to state 24
+
+    over  go to state 65
+
+
+state 61
+
+   27 exps: exps . PLUS exp2
+   28     | exps . MINUS exp2
+   30 object1: ID COLON exps .
+
+    PLUS   shift, and go to state 32
+    MINUS  shift, and go to state 33
+
+    $default  reduce using rule 30 (object1)
+
+
+state 62
+
+   34 object: NEWLINE object1 NEWLINE .
+
+    $default  reduce using rule 34 (object)
+
+
+state 63
+
+   36 object: object COMMA NEWLINE . object1
+   37       | object COMMA NEWLINE . object1 NEWLINE
+
+    ID  shift, and go to state 50
+
+    object1  go to state 66
+
+
+state 64
+
+   35 object: object COMMA object1 .
+
+    $default  reduce using rule 35 (object)
+
+
+state 65
+
+    8 line: VAR ID EQUAL CUROPENBRAC $@1 object CURCLOSEBRAC over .
+
+    $default  reduce using rule 8 (line)
+
+
+state 66
+
+   36 object: object COMMA NEWLINE object1 .
+   37       | object COMMA NEWLINE object1 . NEWLINE
+
+    NEWLINE  shift, and go to state 67
+
+    $default  reduce using rule 36 (object)
+
+
+state 67
+
+   37 object: object COMMA NEWLINE object1 NEWLINE .
+
+    $default  reduce using rule 37 (object)

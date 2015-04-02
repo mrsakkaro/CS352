@@ -1,0 +1,6 @@
+<script type="text/JavaScript">
+var ob = {};
+ob.name = "Circle"
+ob.radius = 5;
+ob.Color = "black";
+</script>
