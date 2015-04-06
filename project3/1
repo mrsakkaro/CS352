@@ -1,0 +1,396 @@
+miniscript.y: In function 'int yyparse()':
+miniscript.y:103:65: error: no matching function for call to 'Var_Decl::Var_Decl(char*&, std::map<std::basic_string<char>, Value*>&)'
+     addStatement(new Var_Decl($2, tbl));
+                                                                 ^
+miniscript.y:103:65: note: candidates are:
+In file included from miniscript.y:6:0:
+AST.h:202:3: note: Var_Decl::Var_Decl(std::string, std::map<std::basic_string<char>, Value*>&, int)
+   Var_Decl(string, map <string, Value*>& , int);
+   ^
+AST.h:202:3: note:   candidate expects 3 arguments, 2 provided
+AST.h:198:7: note: Var_Decl::Var_Decl(const Var_Decl&)
+ class Var_Decl : public Statement {
+       ^
+AST.h:198:7: note:   candidate expects 1 argument, 2 provided
+miniscript.y:106:27: error: no matching function for call to 'ObjectDef::ObjectDef()'
+    objDef = new ObjectDef();
+                           ^
+miniscript.y:106:27: note: candidates are:
+In file included from miniscript.y:6:0:
+AST.h:161:2: note: ObjectDef::ObjectDef(int)
+  ObjectDef(int);
+  ^
+AST.h:161:2: note:   candidate expects 1 argument, 0 provided
+AST.h:157:7: note: ObjectDef::ObjectDef(const ObjectDef&)
+ class ObjectDef : public Expression {
+       ^
+AST.h:157:7: note:   candidate expects 1 argument, 0 provided
+miniscript.y:107:62: error: no matching function for call to 'Assign::Assign(Variable*&, ObjectDef*&)'
+    addStatement(new Assign($1, objDef));
+                                                              ^
+miniscript.y:107:62: note: candidates are:
+In file included from miniscript.y:6:0:
+AST.h:214:3: note: Assign::Assign(Variable*, Expression*, int)
+   Assign (Variable * left, Expression * right, int);
+   ^
+AST.h:214:3: note:   candidate expects 3 arguments, 2 provided
+AST.h:209:7: note: Assign::Assign(const Assign&)
+ class Assign : public Statement {
+       ^
+AST.h:209:7: note:   candidate expects 1 argument, 2 provided
+miniscript.y:111:70: error: no matching function for call to 'ObjectDef::ObjectDef()'
+    addStatement(new Assign($1, new ObjectDef()));
+                                                                      ^
+miniscript.y:111:70: note: candidates are:
+In file included from miniscript.y:6:0:
+AST.h:161:2: note: ObjectDef::ObjectDef(int)
+  ObjectDef(int);
+  ^
+AST.h:161:2: note:   candidate expects 1 argument, 0 provided
+AST.h:157:7: note: ObjectDef::ObjectDef(const ObjectDef&)
+ class ObjectDef : public Expression {
+       ^
+AST.h:157:7: note:   candidate expects 1 argument, 0 provided
+miniscript.y:115:62: error: no matching function for call to 'Assign::Assign(Variable*&, ArrayDef*&)'
+    addStatement(new Assign($1, arrDef));
+                                                              ^
+miniscript.y:115:62: note: candidates are:
+In file included from miniscript.y:6:0:
+AST.h:214:3: note: Assign::Assign(Variable*, Expression*, int)
+   Assign (Variable * left, Expression * right, int);
+   ^
+AST.h:214:3: note:   candidate expects 3 arguments, 2 provided
+AST.h:209:7: note: Assign::Assign(const Assign&)
+ class Assign : public Statement {
+       ^
+AST.h:209:7: note:   candidate expects 1 argument, 2 provided
+miniscript.y:118:83: error: no matching function for call to 'Assign::Assign(Variable*&, Expression*&)'
+    addStatement(new Assign($1, $3));
+                                                                                   ^
+miniscript.y:118:83: note: candidates are:
+In file included from miniscript.y:6:0:
+AST.h:214:3: note: Assign::Assign(Variable*, Expression*, int)
+   Assign (Variable * left, Expression * right, int);
+   ^
+AST.h:214:3: note:   candidate expects 3 arguments, 2 provided
+AST.h:209:7: note: Assign::Assign(const Assign&)
+ class Assign : public Statement {
+       ^
+AST.h:209:7: note:   candidate expects 1 argument, 2 provided
+miniscript.y:120:36: error: no matching function for call to 'DocumentWrite::DocumentWrite()'
+   | DOCUWRITE {docuwrite = new DocumentWrite();} OPENPARENT param CLOSEPARENT over {
+                                    ^
+miniscript.y:120:36: note: candidates are:
+In file included from miniscript.y:6:0:
+AST.h:190:3: note: DocumentWrite::DocumentWrite(int)
+   DocumentWrite(int);
+   ^
+AST.h:190:3: note:   candidate expects 1 argument, 0 provided
+AST.h:185:7: note: DocumentWrite::DocumentWrite(const DocumentWrite&)
+ class DocumentWrite : public Statement {
+       ^
+AST.h:185:7: note:   candidate expects 1 argument, 0 provided
+miniscript.y:151:114: error: no matching function for call to 'SimpleVar::SimpleVar(char*&, std::map<std::basic_string<char>, Value*>&)'
+    $$ = new ObjectVar($3,new SimpleVar($1, tbl));
+                                                                                                                  ^
+miniscript.y:151:114: note: candidates are:
+In file included from miniscript.y:6:0:
+AST.h:117:3: note: SimpleVar::SimpleVar(std::string, std::map<std::basic_string<char>, Value*>&, int)
+   SimpleVar(string name, map <string, Value*> & table, int);
+   ^
+AST.h:117:3: note:   candidate expects 3 arguments, 2 provided
+AST.h:111:7: note: SimpleVar::SimpleVar(const SimpleVar&)
+ class SimpleVar : public Variable {
+       ^
+AST.h:111:7: note:   candidate expects 1 argument, 2 provided
+miniscript.y:155:112: error: no matching function for call to 'SimpleVar::SimpleVar(char*&, std::map<std::basic_string<char>, Value*>&)'
+    $$ = new ArrayVar($3, new SimpleVar($1, tbl));
+                                                                                                                ^
+miniscript.y:155:112: note: candidates are:
+In file included from miniscript.y:6:0:
+AST.h:117:3: note: SimpleVar::SimpleVar(std::string, std::map<std::basic_string<char>, Value*>&, int)
+   SimpleVar(string name, map <string, Value*> & table, int);
+   ^
+AST.h:117:3: note:   candidate expects 3 arguments, 2 provided
+AST.h:111:7: note: SimpleVar::SimpleVar(const SimpleVar&)
+ class SimpleVar : public Variable {
+       ^
+AST.h:111:7: note:   candidate expects 1 argument, 2 provided
+miniscript.y:158:70: error: no matching function for call to 'SimpleVar::SimpleVar(char*&, std::map<std::basic_string<char>, Value*>&)'
+    $$ = new SimpleVar($1, tbl);
+                                                                      ^
+miniscript.y:158:70: note: candidates are:
+In file included from miniscript.y:6:0:
+AST.h:117:3: note: SimpleVar::SimpleVar(std::string, std::map<std::basic_string<char>, Value*>&, int)
+   SimpleVar(string name, map <string, Value*> & table, int);
+   ^
+AST.h:117:3: note:   candidate expects 3 arguments, 2 provided
+AST.h:111:7: note: SimpleVar::SimpleVar(const SimpleVar&)
+ class SimpleVar : public Variable {
+       ^
+AST.h:111:7: note:   candidate expects 1 argument, 2 provided
+miniscript.y:162:69: error: no matching function for call to 'SimpleVar::SimpleVar(char*&, std::map<std::basic_string<char>, Value*>&)'
+    SimpleVar * sv = new SimpleVar($2, tbl);
+                                                                     ^
+miniscript.y:162:69: note: candidates are:
+In file included from miniscript.y:6:0:
+AST.h:117:3: note: SimpleVar::SimpleVar(std::string, std::map<std::basic_string<char>, Value*>&, int)
+   SimpleVar(string name, map <string, Value*> & table, int);
+   ^
+AST.h:117:3: note:   candidate expects 3 arguments, 2 provided
+AST.h:111:7: note: SimpleVar::SimpleVar(const SimpleVar&)
+ class SimpleVar : public Variable {
+       ^
+AST.h:111:7: note:   candidate expects 1 argument, 2 provided
+miniscript.y:183:91: error: no matching function for call to 'Times::Times(Expression*&, Expression*&)'
+      $$ = new Times($1, $3);
+                                                                                           ^
+miniscript.y:183:91: note: candidates are:
+In file included from miniscript.y:6:0:
+AST.h:309:3: note: Times::Times(const Times&)
+   Times (const Times &other);
+   ^
+AST.h:309:3: note:   candidate expects 1 argument, 2 provided
+AST.h:306:3: note: Times::Times(Expression*, Expression*, int)
+   Times (Expression *left, Expression *right, int);
+   ^
+AST.h:306:3: note:   candidate expects 3 arguments, 2 provided
+miniscript.y:186:90: error: no matching function for call to 'Divide::Divide(Expression*&, Expression*&)'
+    $$ = new Divide($1, $3);
+                                                                                          ^
+miniscript.y:186:90: note: candidates are:
+In file included from miniscript.y:6:0:
+AST.h:355:3: note: Divide::Divide(const Divide&)
+   Divide (const Divide &other);
+   ^
+AST.h:355:3: note:   candidate expects 1 argument, 2 provided
+AST.h:352:3: note: Divide::Divide(Expression*, Expression*, int)
+   Divide (Expression *left, Expression *right, int);
+   ^
+AST.h:352:3: note:   candidate expects 3 arguments, 2 provided
+miniscript.y:192:61: error: no matching function for call to 'Word::Word(char*&)'
+    $$ = new Word($1);
+                                                             ^
+miniscript.y:192:61: note: candidates are:
+In file included from miniscript.y:6:0:
+AST.h:237:3: note: Word::Word(const Word&)
+   Word (const Word &other);
+   ^
+AST.h:237:3: note:   no known conversion for argument 1 from 'char*' to 'const Word&'
+AST.h:234:3: note: Word::Word(std::string, int)
+   Word (string val, int);
+   ^
+AST.h:234:3: note:   candidate expects 2 arguments, 1 provided
+miniscript.y:200:60: error: no matching function for call to 'Number::Number(int&)'
+    $$ = new Number($1);
+                                                            ^
+miniscript.y:200:60: note: candidates are:
+In file included from miniscript.y:6:0:
+AST.h:256:3: note: Number::Number(const Number&)
+   Number (const Number &other);
+   ^
+AST.h:256:3: note:   no known conversion for argument 1 from 'int' to 'const Number&'
+AST.h:253:3: note: Number::Number(int, int)
+   Number (int val, int);
+   ^
+AST.h:253:3: note:   candidate expects 2 arguments, 1 provided
+miniscript.y:208:90: error: no matching function for call to 'Plus::Plus(Expression*&, Expression*&)'
+      $$ = new Plus($1, $3);
+                                                                                          ^
+miniscript.y:208:90: note: candidates are:
+In file included from miniscript.y:6:0:
+AST.h:286:3: note: Plus::Plus(const Plus&)
+   Plus (const Plus &other);
+   ^
+AST.h:286:3: note:   candidate expects 1 argument, 2 provided
+AST.h:283:3: note: Plus::Plus(Expression*, Expression*, int)
+   Plus (Expression *left, Expression *right, int);
+   ^
+AST.h:283:3: note:   candidate expects 3 arguments, 2 provided
+miniscript.y:211:89: error: no matching function for call to 'Minus::Minus(Expression*&, Expression*&)'
+    $$ = new Minus($1, $3);
+                                                                                         ^
+miniscript.y:211:89: note: candidates are:
+In file included from miniscript.y:6:0:
+AST.h:332:3: note: Minus::Minus(const Minus&)
+   Minus (const Minus &other);
+   ^
+AST.h:332:3: note:   candidate expects 1 argument, 2 provided
+AST.h:329:3: note: Minus::Minus(Expression*, Expression*, int)
+   Minus (Expression *left, Expression *right, int);
+   ^
+AST.h:329:3: note:   candidate expects 3 arguments, 2 provided
+miniscript.y:219:98: error: no matching function for call to 'Comparison::Comparison(OP, Expression*&, Expression*&)'
+    $$ = new Comparison(GT, $1, $3);
+                                                                                                  ^
+miniscript.y:219:98: note: candidates are:
+In file included from miniscript.y:6:0:
+AST.h:98:2: note: Comparison::Comparison(const Comparison&)
+  Comparison (const Comparison &other);
+  ^
+AST.h:98:2: note:   candidate expects 1 argument, 3 provided
+AST.h:94:3: note: Comparison::Comparison(OP, Expression*, Expression*, int)
+   Comparison (OP op, Expression *left, Expression *right, int);
+   ^
+AST.h:94:3: note:   candidate expects 4 arguments, 3 provided
+miniscript.y:222:98: error: no matching function for call to 'Comparison::Comparison(OP, Expression*&, Expression*&)'
+    $$ = new Comparison(GE, $1, $3);
+                                                                                                  ^
+miniscript.y:222:98: note: candidates are:
+In file included from miniscript.y:6:0:
+AST.h:98:2: note: Comparison::Comparison(const Comparison&)
+  Comparison (const Comparison &other);
+  ^
+AST.h:98:2: note:   candidate expects 1 argument, 3 provided
+AST.h:94:3: note: Comparison::Comparison(OP, Expression*, Expression*, int)
+   Comparison (OP op, Expression *left, Expression *right, int);
+   ^
+AST.h:94:3: note:   candidate expects 4 arguments, 3 provided
+miniscript.y:225:98: error: no matching function for call to 'Comparison::Comparison(OP, Expression*&, Expression*&)'
+    $$ = new Comparison(LT, $1, $3);
+                                                                                                  ^
+miniscript.y:225:98: note: candidates are:
+In file included from miniscript.y:6:0:
+AST.h:98:2: note: Comparison::Comparison(const Comparison&)
+  Comparison (const Comparison &other);
+  ^
+AST.h:98:2: note:   candidate expects 1 argument, 3 provided
+AST.h:94:3: note: Comparison::Comparison(OP, Expression*, Expression*, int)
+   Comparison (OP op, Expression *left, Expression *right, int);
+   ^
+AST.h:94:3: note:   candidate expects 4 arguments, 3 provided
+miniscript.y:228:98: error: no matching function for call to 'Comparison::Comparison(OP, Expression*&, Expression*&)'
+    $$ = new Comparison(LE, $1, $3);
+                                                                                                  ^
+miniscript.y:228:98: note: candidates are:
+In file included from miniscript.y:6:0:
+AST.h:98:2: note: Comparison::Comparison(const Comparison&)
+  Comparison (const Comparison &other);
+  ^
+AST.h:98:2: note:   candidate expects 1 argument, 3 provided
+AST.h:94:3: note: Comparison::Comparison(OP, Expression*, Expression*, int)
+   Comparison (OP op, Expression *left, Expression *right, int);
+   ^
+AST.h:94:3: note:   candidate expects 4 arguments, 3 provided
+miniscript.y:235:98: error: no matching function for call to 'Comparison::Comparison(OP, Expression*&, Expression*&)'
+    $$ = new Comparison(EQ, $1, $3);
+                                                                                                  ^
+miniscript.y:235:98: note: candidates are:
+In file included from miniscript.y:6:0:
+AST.h:98:2: note: Comparison::Comparison(const Comparison&)
+  Comparison (const Comparison &other);
+  ^
+AST.h:98:2: note:   candidate expects 1 argument, 3 provided
+AST.h:94:3: note: Comparison::Comparison(OP, Expression*, Expression*, int)
+   Comparison (OP op, Expression *left, Expression *right, int);
+   ^
+AST.h:94:3: note:   candidate expects 4 arguments, 3 provided
+miniscript.y:238:98: error: no matching function for call to 'Comparison::Comparison(OP, Expression*&, Expression*&)'
+    $$ = new Comparison(NE, $1, $3);
+                                                                                                  ^
+miniscript.y:238:98: note: candidates are:
+In file included from miniscript.y:6:0:
+AST.h:98:2: note: Comparison::Comparison(const Comparison&)
+  Comparison (const Comparison &other);
+  ^
+AST.h:98:2: note:   candidate expects 1 argument, 3 provided
+AST.h:94:3: note: Comparison::Comparison(OP, Expression*, Expression*, int)
+   Comparison (OP op, Expression *left, Expression *right, int);
+   ^
+AST.h:94:3: note:   candidate expects 4 arguments, 3 provided
+miniscript.y:245:99: error: no matching function for call to 'Comparison::Comparison(OP, Expression*&, Expression*&)'
+    $$ = new Comparison(AND, $1, $3);
+                                                                                                   ^
+miniscript.y:245:99: note: candidates are:
+In file included from miniscript.y:6:0:
+AST.h:98:2: note: Comparison::Comparison(const Comparison&)
+  Comparison (const Comparison &other);
+  ^
+AST.h:98:2: note:   candidate expects 1 argument, 3 provided
+AST.h:94:3: note: Comparison::Comparison(OP, Expression*, Expression*, int)
+   Comparison (OP op, Expression *left, Expression *right, int);
+   ^
+AST.h:94:3: note:   candidate expects 4 arguments, 3 provided
+miniscript.y:252:98: error: no matching function for call to 'Comparison::Comparison(OP, Expression*&, Expression*&)'
+    $$ = new Comparison(OR, $1, $3);
+                                                                                                  ^
+miniscript.y:252:98: note: candidates are:
+In file included from miniscript.y:6:0:
+AST.h:98:2: note: Comparison::Comparison(const Comparison&)
+  Comparison (const Comparison &other);
+  ^
+AST.h:98:2: note:   candidate expects 1 argument, 3 provided
+AST.h:94:3: note: Comparison::Comparison(OP, Expression*, Expression*, int)
+   Comparison (OP op, Expression *left, Expression *right, int);
+   ^
+AST.h:94:3: note:   candidate expects 4 arguments, 3 provided
+AST.cpp:21:1: error: prototype for 'DocumentWrite::DocumentWrite()' does not match any in class 'DocumentWrite'
+ DocumentWrite::DocumentWrite(){};
+ ^
+In file included from AST.cpp:1:0:
+AST.h:185:7: error: candidates are: DocumentWrite::DocumentWrite(const DocumentWrite&)
+ class DocumentWrite : public Statement {
+       ^
+AST.h:190:3: error:                 DocumentWrite::DocumentWrite(int)
+   DocumentWrite(int);
+   ^
+AST.cpp:73:1: error: prototype for 'SimpleVar::SimpleVar(std::string, std::map<std::basic_string<char>, Value*>&)' does not match any in class 'SimpleVar'
+ SimpleVar::SimpleVar(string name, map <string, Value*> & table): varName(name), symTBL(table) {};
+ ^
+In file included from AST.cpp:1:0:
+AST.h:111:7: error: candidates are: SimpleVar::SimpleVar(const SimpleVar&)
+ class SimpleVar : public Variable {
+       ^
+AST.h:117:3: error:                 SimpleVar::SimpleVar(std::string, std::map<std::basic_string<char>, Value*>&, int)
+   SimpleVar(string name, map <string, Value*> & table, int);
+   ^
+AST.cpp:120:1: error: prototype for 'Assign::Assign(Variable*, Expression*)' does not match any in class 'Assign'
+ Assign::Assign(Variable * left, Expression * right): child_left(left), child_right(right) {};
+ ^
+In file included from AST.cpp:1:0:
+AST.h:209:7: error: candidates are: Assign::Assign(const Assign&)
+ class Assign : public Statement {
+       ^
+AST.h:214:3: error:                 Assign::Assign(Variable*, Expression*, int)
+   Assign (Variable * left, Expression * right, int);
+   ^
+AST.cpp:353:1: error: prototype for 'Minus::Minus(Expression*, Expression*)' does not match any in class 'Minus'
+ Minus::Minus (Expression *left, Expression *right): child_left (left), child_right (right) {}
+ ^
+In file included from AST.cpp:1:0:
+AST.h:332:3: error: candidates are: Minus::Minus(const Minus&)
+   Minus (const Minus &other);
+   ^
+AST.h:329:3: error:                 Minus::Minus(Expression*, Expression*, int)
+   Minus (Expression *left, Expression *right, int);
+   ^
+AST.cpp:397:1: error: prototype for 'Divide::Divide(Expression*, Expression*)' does not match any in class 'Divide'
+ Divide::Divide (Expression *left, Expression *right): child_left (left), child_right (right) {}
+ ^
+In file included from AST.cpp:1:0:
+AST.h:355:3: error: candidates are: Divide::Divide(const Divide&)
+   Divide (const Divide &other);
+   ^
+AST.h:352:3: error:                 Divide::Divide(Expression*, Expression*, int)
+   Divide (Expression *left, Expression *right, int);
+   ^
+AST.cpp: In member function 'void Array::addElement(int, Value*)':
+AST.cpp:690:47: warning: format '%d' expects argument of type 'int', but argument 3 has type 'std::map<int, Value*>::size_type {aka long unsigned int}' [-Wformat=]
+  fprintf(stderr, "\n SIZE : %d\n" , tbl.size());
+                                               ^
+AST.cpp: In member function 'Value* Array::getElement(int)':
+AST.cpp:706:47: warning: format '%d' expects argument of type 'int', but argument 3 has type 'std::map<int, Value*>::size_type {aka long unsigned int}' [-Wformat=]
+  fprintf(stderr, "\n SIZE : %d\n" , tbl.size());
+                                               ^
+AST.cpp: In member function 'virtual void Comparison::printAST()':
+AST.cpp:1060:62: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+  char * tab[] = {"==", "!=", ">=", "<=", ">", "<", "&&", "||"};
+                                                              ^
+AST.cpp:1060:62: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+AST.cpp:1060:62: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+AST.cpp:1060:62: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+AST.cpp:1060:62: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+AST.cpp:1060:62: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+AST.cpp:1060:62: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+AST.cpp:1060:62: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+make: *** [miniscript] Error 1
