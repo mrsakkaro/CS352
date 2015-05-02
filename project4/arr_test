@@ -1,0 +1,29 @@
+<script type="text/JavaScript">
+var a = 0;
+var b = 1;
+
+document.write(a, "<br />");
+
+var c = []
+c[0] = 16
+
+document.write(c[0], "<br />");
+
+var x = [
+	4,
+	6,
+	"John"
+	]
+
+x[3] = 3;
+
+document.write("result");
+
+document.write(x[1], x[2], "<br />");
+document.write(x[3], "<br />");
+
+x[1] = 12;
+
+document.write(x[1], x[6]);
+
+</script>

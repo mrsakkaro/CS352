@@ -1,0 +1,13 @@
+<script type="text/JavaScript">
+var c = { a : 4,
+b : "hello" 
+}
+
+c.c = "world"
+
+
+document.write(c.a, "<br />");
+document.write(c.b, "<br />");
+document.write(c.c, "<br />");
+document.write(c.d, "<br />");
+</script>

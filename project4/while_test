@@ -1,0 +1,13 @@
+<script type="text/JavaScript">
+var a = 1
+var b = 1
+while ( b < 5 ) {
+	while ( a < 5 ) {
+		var a = a + 1
+		document.write(" ", a, "<br />");
+	}
+	document.write(" ", a, "<br />");
+	document.write(b, "<br />");
+	var b = b + 1;
+}
+</script>

@@ -1,0 +1,334 @@
+Starting parse
+Entering state 0
+Reading a token: Next token is token SCRIPTYPE ()
+Shifting token SCRIPTYPE ()
+Entering state 1
+Reducing stack by rule 1 (line 79):
+-> $$ = nterm $@1 ()
+Stack now 0 1
+Entering state 3
+Reading a token: Next token is token NEWLINE ()
+Shifting token NEWLINE ()
+Entering state 6
+Reducing stack by rule 17 (line 119):
+   $1 = token NEWLINE ()
+-> $$ = nterm line ()
+Stack now 0 1 3
+Entering state 11
+Reading a token: Next token is token VAR ()
+Shifting token VAR ()
+Entering state 7
+Reading a token: Next token is token ID ()
+Shifting token ID ()
+Entering state 16
+Reading a token: Next token is token EQUAL ()
+Reducing stack by rule 30 (line 164):
+   $1 = token VAR ()
+   $2 = token ID ()
+-> $$ = nterm id ()
+Stack now 0 1 3 11
+Entering state 13
+Next token is token EQUAL ()
+Shifting token EQUAL ()
+Entering state 22
+Reading a token: Next token is token NUM ()
+Shifting token NUM ()
+Entering state 25
+Reducing stack by rule 42 (line 202):
+   $1 = token NUM ()
+-> $$ = nterm exp5 ()
+Stack now 0 1 3 11 13 22
+Entering state 30
+Reducing stack by rule 39 (line 191):
+   $1 = nterm exp5 ()
+-> $$ = nterm exp4 ()
+Stack now 0 1 3 11 13 22
+Entering state 29
+Reading a token: Next token is token NEWLINE ()
+Reducing stack by rule 46 (line 216):
+   $1 = nterm exp4 ()
+-> $$ = nterm exp3 ()
+Stack now 0 1 3 11 13 22
+Entering state 31
+Next token is token NEWLINE ()
+Reducing stack by rule 51 (line 233):
+   $1 = nterm exp3 ()
+-> $$ = nterm exp2 ()
+Stack now 0 1 3 11 13 22
+Entering state 32
+Next token is token NEWLINE ()
+Reducing stack by rule 54 (line 243):
+   $1 = nterm exp2 ()
+-> $$ = nterm exp1 ()
+Stack now 0 1 3 11 13 22
+Entering state 33
+Next token is token NEWLINE ()
+Reducing stack by rule 56 (line 250):
+   $1 = nterm exp1 ()
+-> $$ = nterm exp0 ()
+Stack now 0 1 3 11 13 22
+Entering state 34
+Next token is token NEWLINE ()
+Reducing stack by rule 58 (line 257):
+   $1 = nterm exp0 ()
+-> $$ = nterm exps ()
+Stack now 0 1 3 11 13 22
+Entering state 45
+Next token is token NEWLINE ()
+Shifting token NEWLINE ()
+Entering state 36
+Reducing stack by rule 32 (line 173):
+   $1 = token NEWLINE ()
+-> $$ = nterm over ()
+Stack now 0 1 3 11 13 22 45
+Entering state 67
+Reducing stack by rule 13 (line 110):
+   $1 = nterm id ()
+   $2 = token EQUAL ()
+   $3 = nterm exps ()
+   $4 = nterm over ()
+-> $$ = nterm line ()
+Stack now 0 1 3 11
+Entering state 11
+Reading a token: Next token is token IF ()
+Shifting token IF ()
+Entering state 9
+Reading a token: Next token is token OPENPARENT ()
+Shifting token OPENPARENT ()
+Entering state 18
+Reading a token: Next token is token ID ()
+Shifting token ID ()
+Entering state 5
+Reading a token: Next token is token EQEQUAL ()
+Reducing stack by rule 29 (line 160):
+   $1 = token ID ()
+-> $$ = nterm id ()
+Stack now 0 1 3 11 11 9 18
+Entering state 28
+Reducing stack by rule 43 (line 205):
+   $1 = nterm id ()
+-> $$ = nterm exp5 ()
+Stack now 0 1 3 11 11 9 18
+Entering state 30
+Reducing stack by rule 39 (line 191):
+   $1 = nterm exp5 ()
+-> $$ = nterm exp4 ()
+Stack now 0 1 3 11 11 9 18
+Entering state 29
+Next token is token EQEQUAL ()
+Reducing stack by rule 46 (line 216):
+   $1 = nterm exp4 ()
+-> $$ = nterm exp3 ()
+Stack now 0 1 3 11 11 9 18
+Entering state 31
+Next token is token EQEQUAL ()
+Reducing stack by rule 51 (line 233):
+   $1 = nterm exp3 ()
+-> $$ = nterm exp2 ()
+Stack now 0 1 3 11 11 9 18
+Entering state 32
+Next token is token EQEQUAL ()
+Reducing stack by rule 54 (line 243):
+   $1 = nterm exp2 ()
+-> $$ = nterm exp1 ()
+Stack now 0 1 3 11 11 9 18
+Entering state 33
+Next token is token EQEQUAL ()
+Shifting token EQEQUAL ()
+Entering state 56
+Reading a token: Next token is token NUM ()
+Shifting token NUM ()
+Entering state 25
+Reducing stack by rule 42 (line 202):
+   $1 = token NUM ()
+-> $$ = nterm exp5 ()
+Stack now 0 1 3 11 11 9 18 33 56
+Entering state 30
+Reducing stack by rule 39 (line 191):
+   $1 = nterm exp5 ()
+-> $$ = nterm exp4 ()
+Stack now 0 1 3 11 11 9 18 33 56
+Entering state 29
+Reading a token: Next token is token CLOSEPARENT ()
+Reducing stack by rule 46 (line 216):
+   $1 = nterm exp4 ()
+-> $$ = nterm exp3 ()
+Stack now 0 1 3 11 11 9 18 33 56
+Entering state 31
+Next token is token CLOSEPARENT ()
+Reducing stack by rule 51 (line 233):
+   $1 = nterm exp3 ()
+-> $$ = nterm exp2 ()
+Stack now 0 1 3 11 11 9 18 33 56
+Entering state 77
+Next token is token CLOSEPARENT ()
+Reducing stack by rule 52 (line 237):
+   $1 = nterm exp1 ()
+   $2 = token EQEQUAL ()
+   $3 = nterm exp2 ()
+-> $$ = nterm exp1 ()
+Stack now 0 1 3 11 11 9 18
+Entering state 33
+Next token is token CLOSEPARENT ()
+Reducing stack by rule 56 (line 250):
+   $1 = nterm exp1 ()
+-> $$ = nterm exp0 ()
+Stack now 0 1 3 11 11 9 18
+Entering state 34
+Next token is token CLOSEPARENT ()
+Reducing stack by rule 58 (line 257):
+   $1 = nterm exp0 ()
+-> $$ = nterm exps ()
+Stack now 0 1 3 11 11 9 18
+Entering state 41
+Next token is token CLOSEPARENT ()
+Reducing stack by rule 24 (line 142):
+   $1 = nterm exps ()
+-> $$ = nterm cond ()
+Stack now 0 1 3 11 11 9 18
+Entering state 40
+Next token is token CLOSEPARENT ()
+Shifting token CLOSEPARENT ()
+Entering state 63
+Reducing stack by rule 18 (line 122):
+-> $$ = nterm $@5 ()
+Stack now 0 1 3 11 11 9 18 40 63
+Entering state 83
+Reading a token: Next token is token CUROPENBRAC ()
+Shifting token CUROPENBRAC ()
+Entering state 97
+Reading a token: Next token is token NEWLINE ()
+Shifting token NEWLINE ()
+Entering state 111
+Reading a token: Next token is token DOCUWRITE ()
+Shifting token DOCUWRITE ()
+Entering state 8
+Reducing stack by rule 14 (line 113):
+-> $$ = nterm $@4 ()
+Stack now 0 1 3 11 11 9 18 40 63 83 97 111 8
+Entering state 17
+Reading a token: Next token is token OPENPARENT ()
+Shifting token OPENPARENT ()
+Entering state 39
+Reading a token: Next token is token QQUO ()
+Shifting token QQUO ()
+Entering state 24
+Reducing stack by rule 40 (line 194):
+   $1 = token QQUO ()
+-> $$ = nterm exp4 ()
+Stack now 0 1 3 11 11 9 18 40 63 83 97 111 8 17 39
+Entering state 29
+Reading a token: Next token is token CLOSEPARENT ()
+Reducing stack by rule 46 (line 216):
+   $1 = nterm exp4 ()
+-> $$ = nterm exp3 ()
+Stack now 0 1 3 11 11 9 18 40 63 83 97 111 8 17 39
+Entering state 31
+Next token is token CLOSEPARENT ()
+Reducing stack by rule 51 (line 233):
+   $1 = nterm exp3 ()
+-> $$ = nterm exp2 ()
+Stack now 0 1 3 11 11 9 18 40 63 83 97 111 8 17 39
+Entering state 32
+Next token is token CLOSEPARENT ()
+Reducing stack by rule 54 (line 243):
+   $1 = nterm exp2 ()
+-> $$ = nterm exp1 ()
+Stack now 0 1 3 11 11 9 18 40 63 83 97 111 8 17 39
+Entering state 33
+Next token is token CLOSEPARENT ()
+Reducing stack by rule 56 (line 250):
+   $1 = nterm exp1 ()
+-> $$ = nterm exp0 ()
+Stack now 0 1 3 11 11 9 18 40 63 83 97 111 8 17 39
+Entering state 34
+Next token is token CLOSEPARENT ()
+Reducing stack by rule 58 (line 257):
+   $1 = nterm exp0 ()
+-> $$ = nterm exps ()
+Stack now 0 1 3 11 11 9 18 40 63 83 97 111 8 17 39
+Entering state 62
+Next token is token CLOSEPARENT ()
+Reducing stack by rule 33 (line 176):
+   $1 = nterm exps ()
+-> $$ = nterm param ()
+Stack now 0 1 3 11 11 9 18 40 63 83 97 111 8 17 39
+Entering state 61
+Next token is token CLOSEPARENT ()
+Shifting token CLOSEPARENT ()
+Entering state 81
+Reading a token: Next token is token NEWLINE ()
+Shifting token NEWLINE ()
+Entering state 36
+Reducing stack by rule 32 (line 173):
+   $1 = token NEWLINE ()
+-> $$ = nterm over ()
+Stack now 0 1 3 11 11 9 18 40 63 83 97 111 8 17 39 61 81
+Entering state 95
+Reducing stack by rule 15 (line 113):
+   $1 = token DOCUWRITE ()
+   $2 = nterm $@4 ()
+   $3 = token OPENPARENT ()
+   $4 = nterm param ()
+   $5 = token CLOSEPARENT ()
+   $6 = nterm over ()
+-> $$ = nterm line ()
+Stack now 0 1 3 11 11 9 18 40 63 83 97 111
+Entering state 11
+Reading a token: Next token is token CURCLOSEBRAC ()
+Reducing stack by rule 6 (line 92):
+-> $$ = nterm lines ()
+Stack now 0 1 3 11 11 9 18 40 63 83 97 111 11
+Entering state 21
+Reducing stack by rule 5 (line 91):
+   $1 = nterm line ()
+   $2 = nterm lines ()
+-> $$ = nterm lines ()
+Stack now 0 1 3 11 11 9 18 40 63 83 97 111
+Entering state 123
+Reducing stack by rule 25 (line 147):
+-> $$ = nterm $@7 ()
+Stack now 0 1 3 11 11 9 18 40 63 83 97 111 123
+Entering state 130
+Next token is token CURCLOSEBRAC ()
+Shifting token CURCLOSEBRAC ()
+Entering state 134
+Reducing stack by rule 26 (line 147):
+   $1 = token CUROPENBRAC ()
+   $2 = token NEWLINE ()
+   $3 = nterm lines ()
+   $4 = nterm $@7 ()
+   $5 = token CURCLOSEBRAC ()
+-> $$ = nterm body ()
+Stack now 0 1 3 11 11 9 18 40 63 83
+Entering state 98
+Reducing stack by rule 19 (line 128):
+-> $$ = nterm $@6 ()
+Stack now 0 1 3 11 11 9 18 40 63 83 98
+Entering state 112
+Reading a token: Next token is token ELSEIF ()
+line:5, syntax error
+Error: popping nterm $@6 ()
+Stack now 0 1 3 11 11 9 18 40 63 83 98
+Error: popping nterm body ()
+Stack now 0 1 3 11 11 9 18 40 63 83
+Error: popping nterm $@5 ()
+Stack now 0 1 3 11 11 9 18 40 63
+Error: popping token CLOSEPARENT ()
+Stack now 0 1 3 11 11 9 18 40
+Error: popping nterm cond ()
+Stack now 0 1 3 11 11 9 18
+Error: popping token OPENPARENT ()
+Stack now 0 1 3 11 11 9
+Error: popping token IF ()
+Stack now 0 1 3 11 11
+Error: popping nterm line ()
+Stack now 0 1 3 11
+Error: popping nterm line ()
+Stack now 0 1 3
+Error: popping nterm $@1 ()
+Stack now 0 1
+Error: popping token SCRIPTYPE ()
+Stack now 0
+Cleanup: discarding lookahead token ELSEIF ()
+Stack now 0

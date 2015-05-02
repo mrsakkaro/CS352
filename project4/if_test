@@ -1,0 +1,10 @@
+<script type="text/JavaScript">
+var a = 1
+if ( a == 0 ) {
+	document.write("if")
+} else if (a == 2 ) {
+	document.write("sup")
+} else {
+	document.write("else")
+}
+</script>

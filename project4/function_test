@@ -1,0 +1,12 @@
+<script type="text/JavaScript">
+
+function func(a, b) {
+	document.write(a*b, "<br />");
+	return a*b
+}
+var a = 2;
+var b = 3;
+return
+func(func(a,b), b);
+
+</script>
